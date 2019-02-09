@@ -1,0 +1,47 @@
+package java_sessional;
+
+public class thread_basic_1 {
+	public static void main(String[] args) throws Exception{
+		A objA = new A();
+		objA.start();
+		
+		Runnable_DemO objR = new Runnable_DemO();
+		Thread T1 = new Thread(objR);
+		
+		objA.yield();
+		
+		
+        T1.start();
+        //objA.sleep(12000);
+        
+        objA.resume();
+    }
+}   
+class A extends Thread {    		
+	public void run() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println("take " + i + "from class A extending thread");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+class Runnable_DemO implements Runnable {
+    @Override
+    public void run() {
+    	for (int i = 0; i < 10; i++) {
+            System.out.println("take " + i + "from class RunnableDemo implementing runnable");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }      
+    }
+}
+
+
+

@@ -1,0 +1,45 @@
+package java_sessional;
+
+public class thread_basic_1 {
+	public static void main(String[] args) throws Exception{
+		
+		Runnable_DemO objIMR = new Runnable_DemO();
+		Thread T1 = new Thread(objIMR);
+		EXT objEXTA = new EXT("A");
+		EXT objEXTB = new EXT("B");
+		
+		objEXTA.start();
+		objEXTB.start();
+        T1.start();
+        objEXTA.setPriority(Thread.MIN_PRIORITY);
+        objEXTB.setPriority(Thread.MAX_PRIORITY);
+        T1.setPriority(Thread.NORM_PRIORITY);
+        
+    }
+}
+
+class EXT extends Thread {
+	String Classname;
+	
+	EXT(String name){
+		Classname = name;
+	}
+	
+	public void run() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println("take " + i + "from class   " + Classname + "   extending thread");
+        }
+    }
+}
+
+class Runnable_DemO implements Runnable {
+    @Override
+    public void run() {
+    	for (int i = 0; i < 10; i++) {
+            System.out.println("take " + i + "from class RunnableDemo implementing runnable");
+        }      
+    }
+}
+
+
+
